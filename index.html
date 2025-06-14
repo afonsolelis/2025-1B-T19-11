@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mergulhando nas Redes - Apresentação</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Controles de navegação -->
+        <div class="controls">
+            <button id="prevBtn" class="control-btn"><i class="fas fa-chevron-left"></i></button>
+            <span class="slide-counter">
+                <span id="currentSlide">1</span> / <span id="totalSlides">13</span>
+            </span>
+            <button id="nextBtn" class="control-btn"><i class="fas fa-chevron-right"></i></button>
+            <button id="fullscreenBtn" class="control-btn"><i class="fas fa-expand"></i></button>
+        </div>
+
+        <!-- Slide 1: Título -->
+        <div class="slide active" id="slide-1">
+            <div class="slide-content title-slide">
+                <h1 class="main-title">Mergulhando nas Redes</h1>
+                <h2 class="subtitle">Análise de Requisições HTTP e Arquitetura Cliente-Servidor</h2>
+                <div class="presenter-info">
+                    <p><strong>Prof. Afonso Cesar</strong></p>
+                    <p>25/06/2025 - 10:00h</p>
+                </div>
+                <div class="network-animation">
+                    <div class="node client"></div>
+                    <div class="connection"></div>
+                    <div class="node server"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Objetivos -->
+        <div class="slide" id="slide-2">
+            <div class="slide-content">
+                <h2>Objetivos da Aula</h2>
+                <ul class="objectives-list">
+                    <li class="fade-in-item">Compreender o processo de requisição-resposta HTTP</li>
+                    <li class="fade-in-item">Analisar a arquitetura cliente-servidor</li>
+                    <li class="fade-in-item">Explorar o modelo OSI/TCP-IP na prática</li>
+                    <li class="fade-in-item">Implementar aplicações práticas com Node.js</li>
+                    <li class="fade-in-item">Realizar deploy em ambiente de produção</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3: Modelo OSI -->
+        <div class="slide" id="slide-3">
+            <div class="slide-content">
+                <h2>Modelo OSI vs TCP/IP</h2>
+                <div class="osi-model">
+                    <div class="model-comparison">
+                        <div class="osi-layers">
+                            <h3>Modelo OSI</h3>
+                            <div class="layer layer-7">7. Aplicação</div>
+                            <div class="layer layer-6">6. Apresentação</div>
+                            <div class="layer layer-5">5. Sessão</div>
+                            <div class="layer layer-4">4. Transporte</div>
+                            <div class="layer layer-3">3. Rede</div>
+                            <div class="layer layer-2">2. Enlace</div>
+                            <div class="layer layer-1">1. Física</div>
+                        </div>
+                        <div class="tcp-layers">
+                            <h3>Modelo TCP/IP</h3>
+                            <div class="layer tcp-app">Aplicação</div>
+                            <div class="layer tcp-transport">Transporte</div>
+                            <div class="layer tcp-internet">Internet</div>
+                            <div class="layer tcp-access">Acesso à Rede</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Anatomia HTTP -->
+        <div class="slide" id="slide-4">
+            <div class="slide-content">
+                <h2>Anatomia de uma Requisição HTTP</h2>
+                <div class="http-anatomy">
+                    <div class="http-request">
+                        <h3>Requisição (Request)</h3>
+                        <div class="code-block">
+                            <pre><code>GET /api/users HTTP/1.1
+Host: exemplo.com
+User-Agent: Mozilla/5.0
+Accept: application/json
+Connection: keep-alive</code></pre>
+                        </div>
+                    </div>
+                    <div class="http-response">
+                        <h3>Resposta (Response)</h3>
+                        <div class="code-block">
+                            <pre><code>HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 126
+
+{
+  "users": [
+    {"id": 1, "name": "João"}
+  ]
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Processo DNS -->
+        <div class="slide" id="slide-5">
+            <div class="slide-content">
+                <h2>Processo de Resolução DNS</h2>
+                <div class="dns-process">
+                    <div class="dns-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Cache Local</h4>
+                            <p>Cliente consulta cache do navegador</p>
+                        </div>
+                    </div>
+                    <div class="dns-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>DNS Local</h4>
+                            <p>Consulta ao servidor DNS do provedor</p>
+                        </div>
+                    </div>
+                    <div class="dns-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>DNS Recursivo</h4>
+                            <p>Consulta aos servidores raiz e TLD</p>
+                        </div>
+                    </div>
+                    <div class="dns-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>IP Retornado</h4>
+                            <p>Endereço IP é retornado ao cliente</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Arquitetura Cliente-Servidor -->
+        <div class="slide" id="slide-6">
+            <div class="slide-content">
+                <h2>Arquitetura Cliente-Servidor</h2>
+                <div class="architecture-diagram">
+                    <div class="client-side">
+                        <h3><i class="fas fa-desktop"></i> Cliente</h3>
+                        <ul>
+                            <li>Interface do usuário</li>
+                            <li>Validação de entrada</li>
+                            <li>Formatação de requisições</li>
+                            <li>Cache local</li>
+                            <li>Tratamento de erros</li>
+                        </ul>
+                    </div>
+                    <div class="communication-arrow">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>HTTP/HTTPS</span>
+                    </div>
+                    <div class="server-side">
+                        <h3><i class="fas fa-server"></i> Servidor</h3>
+                        <ul>
+                            <li>Lógica de negócios</li>
+                            <li>Acesso ao banco de dados</li>
+                            <li>Autenticação</li>
+                            <li>Balanceamento de carga</li>
+                            <li>Logs e monitoramento</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Métricas de Performance -->
+        <div class="slide" id="slide-7">
+            <div class="slide-content">
+                <h2>Métricas de Performance</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon"><i class="fas fa-clock"></i></div>
+                        <h4>TTFB</h4>
+                        <p>Time to First Byte</p>
+                        <div class="metric-example">< 200ms</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon"><i class="fas fa-route"></i></div>
+                        <h4>RTT</h4>
+                        <p>Round Trip Time</p>
+                        <div class="metric-example">< 100ms</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon"><i class="fas fa-search"></i></div>
+                        <h4>DNS Lookup</h4>
+                        <p>Tempo de resolução</p>
+                        <div class="metric-example">< 50ms</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon"><i class="fas fa-link"></i></div>
+                        <h4>Connection</h4>
+                        <p>Estabelecimento</p>
+                        <div class="metric-example">< 100ms</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Códigos de Status HTTP -->
+        <div class="slide" id="slide-8">
+            <div class="slide-content">
+                <h2>Códigos de Status HTTP</h2>
+                <div class="status-codes">
+                    <div class="status-group success">
+                        <h3>2xx - Sucesso</h3>
+                        <div class="status-item">200 OK</div>
+                        <div class="status-item">201 Created</div>
+                        <div class="status-item">204 No Content</div>
+                    </div>
+                    <div class="status-group redirect">
+                        <h3>3xx - Redirecionamento</h3>
+                        <div class="status-item">301 Moved Permanently</div>
+                        <div class="status-item">304 Not Modified</div>
+                    </div>
+                    <div class="status-group client-error">
+                        <h3>4xx - Erro do Cliente</h3>
+                        <div class="status-item">400 Bad Request</div>
+                        <div class="status-item">401 Unauthorized</div>
+                        <div class="status-item">404 Not Found</div>
+                    </div>
+                    <div class="status-group server-error">
+                        <h3>5xx - Erro do Servidor</h3>
+                        <div class="status-item">500 Internal Error</div>
+                        <div class="status-item">502 Bad Gateway</div>
+                        <div class="status-item">503 Service Unavailable</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Segurança HTTPS -->
+        <div class="slide" id="slide-9">
+            <div class="slide-content">
+                <h2>Segurança: HTTPS e TLS/SSL</h2>
+                <div class="security-diagram">
+                    <div class="security-features">
+                        <div class="feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Criptografia</h4>
+                            <p>Dados protegidos em trânsito</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-certificate"></i>
+                            <h4>Certificados</h4>
+                            <p>Validação de identidade</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-key"></i>
+                            <h4>Perfect Forward Secrecy</h4>
+                            <p>Chaves únicas por sessão</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-lock"></i>
+                            <h4>HSTS</h4>
+                            <p>HTTP Strict Transport Security</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Ferramentas de Análise -->
+        <div class="slide" id="slide-10">
+            <div class="slide-content">
+                <h2>Ferramentas de Análise e Monitoramento</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <i class="fab fa-chrome"></i>
+                        <h4>DevTools</h4>
+                        <p>Network e Performance tabs</p>
+                    </div>
+                    <div class="tool-card">
+                        <i class="fas fa-network-wired"></i>
+                        <h4>Wireshark</h4>
+                        <p>Análise profunda de pacotes</p>
+                    </div>
+                    <div class="tool-card">
+                        <i class="fas fa-terminal"></i>
+                        <h4>curl</h4>
+                        <p>Testes de linha de comando</p>
+                    </div>
+                    <div class="tool-card">
+                        <i class="fas fa-rocket"></i>
+                        <h4>Postman</h4>
+                        <p>Testes de API completos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Deploy no Render -->
+        <div class="slide" id="slide-11">
+            <div class="slide-content">
+                <h2>Deploy no Render</h2>
+                <div class="deploy-steps">
+                    <div class="deploy-step">
+                        <div class="step-icon"><i class="fab fa-github"></i></div>
+                        <h4>1. Git Repository</h4>
+                        <p>Versionamento no GitHub</p>
+                    </div>
+                    <div class="deploy-step">
+                        <div class="step-icon"><i class="fas fa-cog"></i></div>
+                        <h4>2. Configuração</h4>
+                        <p>Environment e Build Commands</p>
+                    </div>
+                    <div class="deploy-step">
+                        <div class="step-icon"><i class="fas fa-rocket"></i></div>
+                        <h4>3. Deploy</h4>
+                        <p>Build automático e URL pública</p>
+                    </div>
+                    <div class="deploy-step">
+                        <div class="step-icon"><i class="fas fa-chart-bar"></i></div>
+                        <h4>4. Monitoramento</h4>
+                        <p>Logs e métricas de produção</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Exercícios Práticos -->
+        <div class="slide" id="slide-12">
+            <div class="slide-content">
+                <h2>Exercícios Práticos</h2>
+                <div class="exercises">
+                    <div class="exercise-card">
+                        <h4><i class="fas fa-tachometer-alt"></i> Análise de Performance</h4>
+                        <p>Use DevTools para analisar tempos de carregamento e identificar gargalos</p>
+                    </div>
+                    <div class="exercise-card">
+                        <h4><i class="fas fa-network-wired"></i> Captura com Wireshark</h4>
+                        <p>Capture e analise pacotes HTTP gerados pela aplicação</p>
+                    </div>
+                    <div class="exercise-card">
+                        <h4><i class="fas fa-weight-hanging"></i> Teste de Carga</h4>
+                        <p>Envie múltiplas requisições simultâneas e observe o comportamento</p>
+                    </div>
+                    <div class="exercise-card">
+                        <h4><i class="fas fa-header"></i> Headers Customizados</h4>
+                        <p>Adicione headers customizados e analise no Network tab</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Conclusão -->
+        <div class="slide" id="slide-13">
+            <div class="slide-content conclusion-slide">
+                <h2>Conclusão</h2>
+                <div class="conclusion-content">
+                    <div class="key-points">
+                        <h3>Pontos-chave Aprendidos:</h3>
+                        <ul>
+                            <li>Compreensão profunda do modelo OSI/TCP-IP</li>
+                            <li>Análise prática de comunicações HTTP</li>
+                            <li>Ferramentas de análise e debugging</li>
+                            <li>Deploy em ambiente de produção</li>
+                        </ul>
+                    </div>
+                    <div class="next-steps">
+                        <h3>Próximos Passos:</h3>
+                        <ul>
+                            <li>Explorar protocolos avançados (WebSockets, HTTP/2)</li>
+                            <li>Implementar sistemas de cache distribuído</li>
+                            <li>Estudar arquiteturas de microserviços</li>
+                            <li>Aprofundar em segurança de redes</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="thank-you">
+                    <h3>Obrigado!</h3>
+                    <p>Dúvidas e discussões</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
